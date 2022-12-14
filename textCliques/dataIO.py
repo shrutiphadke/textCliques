@@ -38,7 +38,7 @@ def detect_duplicates(textFrame, idColumn='postUrl', cleanTextColumn='clean_text
 
 
 
-def remerge_cliqueinfo(node2cliques, reduced_data, text2id, full_Data, idColumn='postUrl', cleanTextColumn='clean_text'):
+def remerge_cliqueinfo(node2cliques, reduced_data, text2id, full_data, idColumn='postUrl', cleanTextColumn='clean_text'):
     """
     Args:
     textFrame :      cleaned text frame with at least these three columns: id, clean text, unclean text.    
@@ -53,7 +53,7 @@ def remerge_cliqueinfo(node2cliques, reduced_data, text2id, full_Data, idColumn=
     """
     
     reduced_data['component'] = reduced_data['tno'].apply(lambda x: node2cliques[x] if x in node2cliques else 'nan')
-    clique_data = final_data[final_data['component']!='nan']
+    clique_data = reduced_data[reduced_data['component']!='nan']
     text2tno = clique_data.set_index(cleanTextColumn).to_dict()['component']
     
     url2component = defaultdict(int)

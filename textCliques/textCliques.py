@@ -17,8 +17,8 @@ import sys
 from textCliques.textCleaning import remove_noise
 from textCliques.dataIO import detect_duplicates, remerge_cliqueinfo
 from textCliques.laserEmbed import calculate_multiling_laser
-from textCluques.cosSim import get_pairwise_cossim, filter_cosSim_matrix, get_nonzero_similarity_tuples
-from textCluques.network import create_edges, create_network, calculate_cliques
+from textCliques.cosSim import get_pairwise_cossim, filter_cosSim_matrix, get_nonzero_similarity_tuples
+from textCliques.network import create_edges, create_network, calculate_cliques
 
 from pandarallel import pandarallel
 pandarallel.initialize()
@@ -71,7 +71,7 @@ class textCliques:
                 full_data = full_data[full_data['clean_text']!='0']
                 
                 #calculate length of cleaned text
-                full_data['clean_textlen'] = full_data['clean_text'].parallel_apply(lambda x: len(x))
+                full_data['len_cleantext'] = full_data['clean_text'].parallel_apply(lambda x: len(x))
                 
                 full_data = full_data[(full_data['len_cleantext']>min_cleantext_charlength)&(full_data['len_cleantext']<max_cleantext_charlength)]
                 
@@ -108,7 +108,7 @@ class textCliques:
         
         langCodes = reduced_data[languageColumn].tolist()
         
-        embeddings = calculate_multiling_laser(textCorp, lang=langCodes)
+        embeddings = calculate_multiling_laser(textCorp, langCodes=langCodes)
         
         
         print("getting pairwise cosine similarity")
@@ -140,7 +140,7 @@ class textCliques:
         
         print('merging the clique information with original data')
         
-        textgroups = remerge_cliqueinfo(node2cliques, reduced_data, text2id, full_Data, idColumn=idColumn, cleanTextColumn=cleaned_text_column_name)
+        textgroups = remerge_cliqueinfo(node2cliques, reduced_data, text2id, full_data, idColumn=idColumn, cleanTextColumn=cleaned_text_column_name)
         
         print('all done!')
         
