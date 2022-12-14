@@ -26,7 +26,7 @@ def filter_cosSim_matrix(sample_cosSim, threshold_similarity=0.9):
 def get_nonzero_similarity_tuples(sample_cosSim):
     nonzero_entries = np.nonzero(sample_cosSim)
     tot_nonzero = nonzero_entries[0].shape[0]
-    return tot_nonzero
+    return tot_nonzero, nonzero_entries
     
     
     
