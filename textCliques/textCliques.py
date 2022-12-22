@@ -60,7 +60,8 @@ class textCliques:
         if languageColumn not in all_columns:
             raise Exception("Dataframe needs a column with language code for each row. Can be specified with languageColumn parameter in the cliqueFinder function call")
             
-            
+        full_data = full_data.dropna(subset=[uncleaned_text_column_name])
+        
         if clean_text==True:
             print("cleaning text")
             
