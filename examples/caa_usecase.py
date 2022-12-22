@@ -19,11 +19,11 @@ from textCliques.textCliques import textCliques
 from pandarallel import pandarallel
 pandarallel.initialize()
 
-full_data = pd.read_csv("/data/shruti/ONR/small_data/kheri_complete_unclean_data.csv")
+full_data = pd.read_csv("/data/shruti/ONR/small_data/caa_complete_unclean_data.csv", header=0)
 
-tClique = textCliques(cossim_threshold=0.95, min_ndegree=5, max_ndegree=50)
+tClique = textCliques(cossim_threshold=0.9, min_ndegree=5, max_ndegree=50)
 
 textgroups = tClique.cliqueFinder(full_data=full_data, languageColumn='language')
 
-textgroups.to_csv("/data/shruti/ONR/small_data/kheri_pythonwrapper_outout.csv")
+textgroups.to_csv("/data/shruti/ONR/small_data/caa_pythonwrapper_outout.csv")
 
