@@ -13,6 +13,7 @@ Finding large groups of similar texts across languages
 ## Use
 #### Example use
 
+``` python
 full_data = #read full data in pandas frame
 
 ##### initiate textClique instance with required threashold for cosine similarity, minimum degree and maximum degree for texts to be included in the network
@@ -24,4 +25,4 @@ textgroups = tClique.cliqueFinder(full_data=full_data, languageColumn='language'
 
 ##### save data enumerated with clique numbers
 textgroups.to_csv("outout.csv")
-
+```
