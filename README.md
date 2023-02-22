@@ -1,2 +1,6 @@
 # textCliques
-getting cliques of texts in multiple languages
+Finding large groups of similar texts across languages
+
+
+
+
